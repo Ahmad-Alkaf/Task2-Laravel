@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('status');
             $table->timestamps();
-            $table->foreignId('user_id');
         });
     }
 
