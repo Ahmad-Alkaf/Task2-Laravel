@@ -12,10 +12,16 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $users = User::filter($request->only([
+            'first_name',
+            'last_name',
+            'birth_date',
+            'gender',
+        ]))->get();
         return $this->sendResponse(
-            User::all(),
+            $users,
             "users retrieved successfully."
         );
     }

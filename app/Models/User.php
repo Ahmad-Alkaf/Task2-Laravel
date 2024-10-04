@@ -55,4 +55,24 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Timesheet::class, 'timesheets');
     }
+
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['first_name'] ?? null, function ($query, $search) {
+            $query->where('first_name', 'like', '%' . $search . '%');
+        });
+
+        $query->when($filters['last_name'] ?? null, function ($query, $search) {
+            $query->where('last_name', 'like', '%' . $search . '%');
+        });
+
+        $query->when($filters['birth_date'] ?? null, function ($query, $search) {
+            $query->where('birth_date', $search);
+        });
+
+        $query->when($filters['gender'] ?? null, function ($query, $search) {
+            $query->where('gender', $search);
+        });
+    }
 }
