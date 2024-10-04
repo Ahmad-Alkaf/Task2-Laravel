@@ -31,10 +31,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('project/delete', 'destroy'); // Delete
     });
     Route::controller(UserController::class)->group(function () {
-        Route::get('user/{id}', 'show');
+        Route::post('user', 'store'); // Create
+        Route::get('user/{user}', 'show'); // Get One
+        Route::get('user', 'index'); // Get All
+        Route::post('user/update', 'update'); // Update
+        Route::post('user/delete', 'destroy'); // Delete
     });
-    // Route::Resource('project', ProjectController::class)
-    //     ->only(['index', 'store', 'show', 'update', 'destroy']);
 });
 
 Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
