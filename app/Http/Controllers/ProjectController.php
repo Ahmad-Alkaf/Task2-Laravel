@@ -11,10 +11,17 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $projects = Project::filter($request->only([
+            'name',
+            'department',
+            'start_date',
+            'end_date',
+            'status',
+        ]))->get();
         return $this->sendResponse(
-            Project::all(),
+            $projects,
             "Projects retrieved successfully."
         );
     }

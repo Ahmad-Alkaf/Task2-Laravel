@@ -37,4 +37,27 @@ class Project extends Model
     {
         return $this->belongsToMany(Timesheet::class, 'timesheets');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['name'] ?? null, function ($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        });
+
+        $query->when($filters['department'] ?? null, function ($query, $search) {
+            $query->where('department', 'like', '%' . $search . '%');
+        });
+
+        $query->when($filters['start_date'] ?? null, function ($query, $search) {
+            $query->where('start_date', $search);
+        });
+
+        $query->when($filters['end_date'] ?? null, function ($query, $search) {
+            $query->where('end_date', $search);
+        });
+
+        $query->when($filters['status'] ?? null, function ($query, $search) {
+            $query->where('status', 'like', '%' . $search . '%');
+        });
+    }
 }
