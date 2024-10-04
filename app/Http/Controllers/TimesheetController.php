@@ -11,10 +11,15 @@ class TimesheetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $timesheets = Timesheet::filter($request->only([
+            'task_name',
+            'date',
+            'hours',
+        ]))->get();
         return $this->sendResponse(
-            Timesheet::all(),
+            $timesheets,
             "Timesheets retrieved successfully."
         );
     }
