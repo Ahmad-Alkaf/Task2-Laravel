@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('user', 'index'); // Get All
         Route::post('user/update', 'update'); // Update
         Route::post('user/delete', 'destroy'); // Delete
+    });
+    Route::controller(TimesheetController::class)->group(function () {
+        Route::post('timesheet', 'store'); // Create
+        Route::get('timesheet/{timesheet}', 'show'); // Get One
+        Route::get('timesheet', 'index'); // Get All
+        Route::post('timesheet/update', 'update'); // Update
+        Route::post('timesheet/delete', 'destroy'); // Delete
     });
 });
 

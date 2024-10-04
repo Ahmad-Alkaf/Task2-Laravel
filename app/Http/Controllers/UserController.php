@@ -56,7 +56,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'exists:users,id',
+            'id' => 'required|exists:users,id',
             'first_name' => 'string|max:255',
             'last_name' => 'string|max:255',
             'email' => 'email|string|max:255|unique:' . User::class,

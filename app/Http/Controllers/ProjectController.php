@@ -54,7 +54,7 @@ class ProjectController extends Controller
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'exists:projects,id',
+            'id' => 'required|exists:projects,id',
             'name' => 'string|max:255',
             'department' => 'string|max:255',
             'start_date' => 'date',
