@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('task_name');
             $table->date('date');
             $table->decimal('hours');
-            $table->foreignId('project_id');
-            $table->foreignId('user_id');
+            $table->foreignId('project_id')->cascadeOnDelete();
+            $table->foreignId('user_id')->cascadeOnDelete();
             $table->timestamps();
         });
     }

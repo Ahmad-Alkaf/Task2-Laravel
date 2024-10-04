@@ -22,12 +22,12 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('login', 'login');
 });
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('logout',[RegisterController::class,'logout']);
+    Route::post('logout', [RegisterController::class, 'logout']);
     Route::controller(ProjectController::class)->group(function () {
         Route::post('project', 'store'); // Create
-        Route::get('project/{id}', 'show'); // Get One
+        Route::get('project/{project}', 'show'); // Get One
         Route::get('project', 'index'); // Get All
-        Route::post('project', 'update'); // Update
+        Route::post('project/update', 'update'); // Update
         Route::post('project/delete', 'destroy'); // Delete
     });
     Route::controller(UserController::class)->group(function () {

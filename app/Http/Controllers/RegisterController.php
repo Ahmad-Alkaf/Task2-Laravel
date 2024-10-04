@@ -68,6 +68,6 @@ class RegisterController extends Controller
     {
         $request->user()->tokens()->delete();
         $request->user()->currentAccessToken()->delete();
-        return $this->sendResponse([], "User logged out successfully.");
+        return $this->sendResponse(null, "User logged out successfully.");
     }
 }
